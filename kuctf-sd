@@ -27,8 +27,7 @@
 #TEMPO LIBERAÇÃO DO SERVIÇO
  STIME=10
 #FLAG
-#FLAG=Kurupira
-#FLAG=`head $0 -n 11 | tail -n 10`
+ FLAG=github.com/m41k
 #CHAVE - PALAVRA PASSE(MD5)
 #PASS=s3nha
  SPASS=db2c158f319a22a8e32a4979905b2b44
