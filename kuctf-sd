@@ -28,7 +28,7 @@
  STIME=10
 #FLAG
 #FLAG=Kurupira
-#FLAG=`head kuctf-sd -n 11 | tail -n 10`
+#FLAG=`head $0 -n 11 | tail -n 10`
 #CHAVE - PALAVRA PASSE(MD5)
 #PASS=s3nha
  SPASS=db2c158f319a22a8e32a4979905b2b44
