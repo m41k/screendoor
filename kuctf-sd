@@ -72,12 +72,9 @@ while [ $LACO = 1 ];
  echo > $CLIST
 
 #SIMULANDO SERVIÇO - POSSIVEL VISUALIZAR NO BROWSER
-#for i in $(seq $STIME); do echo $FLAG | nc -l $SPORT | sleep 1; done
- for i in $(seq $STIME); do
-   #echo $i
+   #echo $FLAG | nc -l $SPORT -w$STIME | sleep 1;
    echo $FLAG | nc -l $SPORT -w$STIME | sleep 1;
- done
-
+   
 #SLEEP PARA DAEMON
  #sleep $STIME
 
