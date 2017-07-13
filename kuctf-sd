@@ -75,7 +75,7 @@ while [ $LACO = 1 ];
 #SIMULANDO SERVIÇO - POSSIVEL VISUALIZAR NO BROWSER
    #echo $FLAG | nc -l $SPORT -w$STIME | sleep 1;
    echo $FLAG | nc -l $SPORT -w$STIME | sleep 1;
-   
+
 #SLEEP PARA DAEMON
  #sleep $STIME
 
