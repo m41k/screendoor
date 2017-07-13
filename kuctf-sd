@@ -16,9 +16,9 @@
 # CONFIGURAÇÃO                            #  
 #-----------------------------------------#
 #PORTA - SCREENDOR
- APORT=601
+ APORT=401
 #PORTA PROTEGIDA - SERVICE PORT
- SPORT=8888
+ SPORT=6070
 #ARQUIVOS PARA COMPARACAO DA CHAVE
  ALIST=/tmp/alist
  CLIST=/tmp/clist
