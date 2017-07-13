@@ -10,65 +10,68 @@
 ##
 ##
 ##
-##-------Configuracao------#
-#porta
+#//maik.alberto@hotmail.com
+#//netcat-openbsd - required
+#-----------------------------------------#
+# CONFIGURAÇÃO                            #  
+#-----------------------------------------#
+#PORTA - SCREENDOR
  APORT=601
-#porta serviço
+#PORTA PROTEGIDA - SERVICE PORT
  SPORT=8888
-#arquivo comparacao palavra passe
+#ARQUIVOS PARA COMPARACAO DA CHAVE
  ALIST=/tmp/alist
  CLIST=/tmp/clist
-#tempo que sera liberado a porta segundos
- STIME=10
-#segundos para digitar a senha
+#TEMPO PARA ENTRAR COM A CHAVE
  ATIME=5
+#TEMPO LIBERAÇÃO DO SERVIÇO
+ STIME=10
 #FLAG
  FLAG=KURUPIRA
-#palavra passe(MD5)
-#pass=s3nha
+#CHAVE - PALAVRA PASSE(MD5)
+#PASS=s3nha
  SPASS=db2c158f319a22a8e32a4979905b2b44
 #Chain
- CHAIN=MK
+ CHAIN=SREENDOOR
 #-----------------------------------------#
-
+#IPTABLES
 #-----------------------------------------#
-#CONFIGURANDO IPTABLES
  iptables -F $CHAIN 2> /dev/null
  iptables -N $CHAIN 2> /dev/nul
  iptables -A $CHAIN -p tcp --dport $SPORT -j REJECT
 
 #MATANDO POSSIVEL PROCESSO PERDIDO
-npid=`ps -ax | grep "\bnc -d -l -w$ATIME -p$APORT" | cut -c 1-6`
-kill -9 $npid 2>/dev/null
+ npid=`ps -ax | grep "\bnc -d -l -w$ATIME -p$APORT" | cut -c 1-6`
+ kill -9 $npid 2>/dev/null
 
-echo > $ALIST
-echo > $CLIST
+ echo > $ALIST
+ echo > $CLIST
 
-laco=1
-rodando=0
+ LACO=1
+ RODA=0
 
-while [ $laco = 1 ];
+while [ $LACO = 1 ];
    do
      fuser -sn tcp $APORT
-     rodando=$?
-     if  [ "$rodando" -eq "1" ]; then
+     RODA=$?
+     if  [ "$RODA" -eq "1" ]; then
          nc -d -l -w$ATIME -p$APORT > $ALIST &
      fi
      tail -n 1 $ALIST | md5sum | cut -d " " -f1 > $CLIST
      grep '\b'$SPASS'\b' $CLIST
-     laco=$?
+     LACO=$?
   done
 
-#############################
+#-----------------------------------------#
 #INCLUSÃO REGRAS IPTABLES
-#############################
+#-----------------------------------------#
  iptables -I $CHAIN 1 -p tcp --dport $SPORT -j ACCEPT
 
 #LIMPANDO ARQUIVOS
  echo > $ALIST
  echo > $CLIST
 
-#SIMULANDO SERVIÇO POSSIVEL VISUALIZAR NO BROWSER
+#SIMULANDO SERVIÇO - POSSIVEL VISUALIZAR NO BROWSER
 #for i in $(seq $STIME); do echo $FLAG | nc -l $SPORT | sleep 1; done
  for i in $(seq $STIME); do
    #echo $i
@@ -78,10 +81,10 @@ while [ $laco = 1 ];
 #SLEEP PARA DAEMON
  #sleep $STIME
 
-#############################
+#-----------------------------------------#
 #REMOÇÃO REGRAS IPTABLES
-#############################
+#-----------------------------------------#
  iptables -D $CHAIN -p tcp --dport $SPORT -j ACCEPT
 
-#DENOVO
+#Let's go again
  $0
