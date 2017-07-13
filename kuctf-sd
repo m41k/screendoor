@@ -12,9 +12,9 @@
 ##///maik.alberto@hotmail.com
 ##//netcat-openbsd - required
 ##/Re-written for Kurupira SO
-#-----------------------------------------#
-# CONFIGURAÇÃO                            #  
-#-----------------------------------------#
+#---------------------------#
+# CONFIGURAÇÃO              #  
+#---------------------------#
 #PORTA - SCREENDOR
  APORT=401
 #PORTA PROTEGIDA - SERVICE PORT
@@ -33,9 +33,9 @@
  SPASS=db2c158f319a22a8e32a4979905b2b44
 #Chain
  CHAIN=SREENDOOR
-#-----------------------------------------#
-#IPTABLES
-#-----------------------------------------#
+#---------------------------#
+#IPTABLES                   #
+#---------------------------#
  iptables -F $CHAIN 2> /dev/null
  iptables -N $CHAIN 2> /dev/nul
  iptables -A $CHAIN -p tcp --dport $SPORT -j REJECT
@@ -62,9 +62,9 @@ while [ $LACO = 1 ];
      LACO=$?
   done
 
-#-----------------------------------------#
-#INCLUSÃO REGRAS IPTABLES
-#-----------------------------------------#
+#---------------------------#
+#INCLUSÃO REGRAS IPTABLES   #
+#---------------------------#
  iptables -I $CHAIN 1 -p tcp --dport $SPORT -j ACCEPT
 
 #LIMPANDO ARQUIVOS
@@ -78,9 +78,9 @@ while [ $LACO = 1 ];
 #SLEEP PARA DAEMON
  #sleep $STIME
 
-#-----------------------------------------#
-#REMOÇÃO REGRAS IPTABLES
-#-----------------------------------------#
+#---------------------------#
+#REMOÇÃO REGRAS IPTABLES    #
+#---------------------------#
  iptables -D $CHAIN -p tcp --dport $SPORT -j ACCEPT
 
 #Let's go again
